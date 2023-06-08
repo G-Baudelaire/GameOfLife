@@ -1,8 +1,8 @@
 package baudelaire.gamelogic;
 
 public class World {
-    private final int columns, rows;
-    private boolean[][] world;
+    protected final int columns, rows;
+    protected boolean[][] world;
 
     public World(int columns, int rows) {
         if (columns < 1 || rows < 1) throw new IllegalArgumentException();
@@ -11,6 +11,9 @@ public class World {
         world = new boolean[rows][columns];
     }
 
+    /**
+     * @return String representation of the world using crosses and circles.
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -23,7 +26,13 @@ public class World {
         return stringBuilder.toString();
     }
 
-    private void toStringInnerLoop(boolean[] array, StringBuilder stringBuilder) {
+    /**
+     * Inner loop of toString() has been separated for clarity.
+     *
+     * @param array         A row of the world.
+     * @param stringBuilder StringBuilder object to create the string output.
+     */
+    protected void toStringInnerLoop(boolean[] array, StringBuilder stringBuilder) {
         int endIndex = columns - 1;
 
         for (int i = 0; i < columns; i++) {
@@ -40,6 +49,11 @@ public class World {
         return rows;
     }
 
+    /**
+     * Create a copy of the 2D array.
+     *
+     * @return 2D array of the world.
+     */
     public boolean[][] getWorld() {
         return world.clone();
     }
@@ -52,14 +66,25 @@ public class World {
         world[row][column] = alive;
     }
 
-     void setWorld(boolean[][] newWorld) {
+    /**
+     * Replace current 2D array of the world with a new 2D array.
+     *
+     * @param newWorld 2D boolean array of equal size to the current world.
+     */
+    protected void setWorld(boolean[][] newWorld) {
         if (newWorld.length == rows) {
             if (newWorld[0].length == columns) {
                 world = newWorld;
-            } else throw new IllegalArgumentException("Incorrect number of columns.");
+            } else {
+                throw new IllegalArgumentException("Incorrect number of columns.");
+            }
         } else throw new IllegalArgumentException("Incorrect number of rows.");
     }
 
+    /**
+     * Ticks the world once calculating which cells are living or dead and then updating the 2D array representing the
+     * world.
+     */
     public void tickWorld() {
         boolean[][] newWorld = new boolean[rows][columns];
         for (int r = 0; r < rows; r++) {
@@ -70,29 +95,38 @@ public class World {
         world = newWorld;
     }
 
-    private int getNumberOfLivingNeighbours(int column, int row) {
+
+    /**
+     * Tick an individual cell.
+     *
+     * @param alive  Whether the cell is alive or dead.
+     * @param column Column of the cell.
+     * @param row    Row of the cell.
+     * @return Boolean of whether the cell is alive or dead after a tick.
+     */
+    protected boolean tickCell(boolean alive, int column, int row) {
+        int livingNeighbours = getNumberOfLivingNeighbours(column, row);
+        return livingNeighbours == 3 || (alive && livingNeighbours == 2);
+    }
+
+    /**
+     * Find number of living neighbours a cell has.
+     *
+     * @param column Column of the cell.
+     * @param row    Row of the cell.
+     * @return Integer of how many adjacent cells (including diagonal ones) are alive.
+     */
+    protected int getNumberOfLivingNeighbours(int column, int row) {
         int livingNeighbours = 0;
 
         for (int c = column - 1; c < column + 2; c++) {
             if (c < 0 || columns <= c) continue;
-            livingNeighbours += getNumberOfLivingNeighboursInnerLoop(column, c, row);
+
+            for (int r = row - 1; r < row + 2; r++) {
+                if ((r < 0 || rows <= r) || (r == row && c == column)) continue;
+                if (world[r][c]) livingNeighbours++;
+            }
         }
         return livingNeighbours;
-    }
-
-    private int getNumberOfLivingNeighboursInnerLoop(int column, int c, int row) {
-        int livingNeighboursInRow = 0;
-
-        for (int r = row - 1; r < row + 2; r++) {
-            if ((r < 0 || rows <= r) || (r == row && c == column)) continue;
-            if (world[r][c]) livingNeighboursInRow++;
-        }
-        return livingNeighboursInRow;
-    }
-
-    private boolean tickCell(boolean cell, int column, int row) {
-        int livingNeighbours;
-        livingNeighbours = getNumberOfLivingNeighbours(column, row);
-        return livingNeighbours == 3 || (cell && livingNeighbours == 2);
     }
 }
