@@ -40,7 +40,7 @@ public class World {
         return rows;
     }
 
-    public boolean[][] getWorldCopy() {
+    public boolean[][] getWorld() {
         return world.clone();
     }
 
@@ -50,6 +50,14 @@ public class World {
 
     public void setCell(boolean alive, int column, int row) {
         world[row][column] = alive;
+    }
+
+     void setWorld(boolean[][] newWorld) {
+        if (newWorld.length == rows) {
+            if (newWorld[0].length == columns) {
+                world = newWorld;
+            } else throw new IllegalArgumentException("Incorrect number of columns.");
+        } else throw new IllegalArgumentException("Incorrect number of rows.");
     }
 
     public void tickWorld() {
