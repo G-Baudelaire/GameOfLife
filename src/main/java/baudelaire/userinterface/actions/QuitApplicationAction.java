@@ -1,21 +1,10 @@
 package baudelaire.userinterface.actions;
 
-import baudelaire.userinterface.MainWindow;
-import baudelaire.userinterface.worldscreen.WorldPanel;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
-public class StartWorldAction implements Action {
-    private final MainWindow mainWindow;
-    private final WorldPanel worldPanel;
-
-    public StartWorldAction(MainWindow mainWindow, WorldPanel worldPanel) {
-        this.mainWindow = mainWindow;
-        this.worldPanel = worldPanel;
-    }
-
+public class QuitApplicationAction implements Action {
     /**
      * Gets one of this object's properties
      * using the associated key.
@@ -92,6 +81,6 @@ public class StartWorldAction implements Action {
      */
     public void actionPerformed(ActionEvent e) {
 //      TODO: Change this placeholder implementation.
-        System.exit(1);
+        System.exit(0);
     }
 }

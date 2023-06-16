@@ -1,19 +1,19 @@
 package baudelaire.userinterface.actions;
 
 import baudelaire.userinterface.MainWindow;
-import baudelaire.userinterface.worldscreen.WorldPanel;
+import baudelaire.userinterface.savesscreen.SavesPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
-public class StartWorldAction implements Action {
+public class OpenSavesAction implements Action {
     private final MainWindow mainWindow;
-    private final WorldPanel worldPanel;
+    private final SavesPanel savesPanel;
 
-    public StartWorldAction(MainWindow mainWindow, WorldPanel worldPanel) {
+    public OpenSavesAction(MainWindow mainWindow, SavesPanel savesPanel) {
         this.mainWindow = mainWindow;
-        this.worldPanel = worldPanel;
+        this.savesPanel = savesPanel;
     }
 
     /**
@@ -24,6 +24,7 @@ public class StartWorldAction implements Action {
      * @return the {@code Object} value
      * @see #putValue
      */
+    @Override
     public Object getValue(String key) {
         return null;
     }
@@ -37,6 +38,7 @@ public class StartWorldAction implements Action {
      * @param key   a <code>String</code> containing the key
      * @param value an <code>Object</code> value
      */
+    @Override
     public void putValue(String key, Object value) {
     }
 
@@ -48,6 +50,7 @@ public class StartWorldAction implements Action {
      * @return true if this {@code Action} is enabled
      * @see #accept
      */
+    @Override
     public boolean isEnabled() {
         return true;
     }
@@ -62,6 +65,7 @@ public class StartWorldAction implements Action {
      * @param b true to enable this {@code Action}, false to disable it
      * @see #accept
      */
+    @Override
     public void setEnabled(boolean b) {
     }
 
@@ -73,6 +77,7 @@ public class StartWorldAction implements Action {
      *
      * @param listener a <code>PropertyChangeListener</code> object
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
     }
 
@@ -82,6 +87,7 @@ public class StartWorldAction implements Action {
      * @param listener a <code>PropertyChangeListener</code> object
      * @see #addPropertyChangeListener
      */
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
     }
 
@@ -90,8 +96,9 @@ public class StartWorldAction implements Action {
      *
      * @param e the event to be processed
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
 //      TODO: Change this placeholder implementation.
-        System.exit(1);
+        System.exit(2);
     }
 }
