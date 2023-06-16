@@ -1,7 +1,7 @@
 package baudelaire.userinterface.actions;
 
 import baudelaire.userinterface.MainWindow;
-import baudelaire.userinterface.savesscreen.SavesPanel;
+import baudelaire.userinterface.savesscreen.SavesScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,9 +9,9 @@ import java.beans.PropertyChangeListener;
 
 public class OpenSavesAction implements Action {
     private final MainWindow mainWindow;
-    private final SavesPanel savesPanel;
+    private final SavesScreen savesPanel;
 
-    public OpenSavesAction(MainWindow mainWindow, SavesPanel savesPanel) {
+    public OpenSavesAction(MainWindow mainWindow, SavesScreen savesPanel) {
         this.mainWindow = mainWindow;
         this.savesPanel = savesPanel;
     }
