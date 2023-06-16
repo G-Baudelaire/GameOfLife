@@ -12,16 +12,16 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         MainWindow mainWindow = new MainWindow();
-        MainMenuPanel mainPanel = new MainMenuPanel();
+        MainMenuScreen menuScreen = new MainMenuScreen();
         makeInterfaceCrossPlatform();
 
-        createApplicationTitle(mainPanel);
-        createMenuButtons(mainWindow, mainPanel);
-        showWindow(mainWindow, mainPanel);
+        createApplicationTitle(menuScreen);
+        createMenuButtons(mainWindow, menuScreen);
+        showWindow(mainWindow, menuScreen);
     }
 
-    private static void showWindow(MainWindow mainWindow, MainMenuPanel mainPanel) {
-        mainWindow.add(mainPanel);
+    private static void showWindow(MainWindow mainWindow, MainMenuScreen menuScreen) {
+        mainWindow.add(menuScreen);
         mainWindow.pack();
         mainWindow.setVisible(true);
     }
@@ -34,22 +34,22 @@ public class Main {
         }
     }
 
-    private static void createApplicationTitle(JPanel mainPanel) {
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
-        mainPanel.add(new ApplicationTitleLabel());
+    private static void createApplicationTitle(MainMenuScreen menuScreen) {
+        menuScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        menuScreen.add(new ApplicationTitleLabel());
     }
 
-    private static void createMenuButtons(MainWindow mainWindow, JPanel mainMenuPanel) {
+    private static void createMenuButtons(MainWindow mainWindow, MainMenuScreen menuScreen) {
         NewWorldButton newWorldButton = new NewWorldButton(new StartWorldAction(mainWindow, null));
         OpenSavesButton openSavesButton = new OpenSavesButton(new OpenSavesAction(mainWindow, null));
         QuitApplicationButton quitApplicationButton = new QuitApplicationButton(new QuitApplicationAction());
         Dimension buttonDistance = new Dimension(0, 15);
 
-        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
-        mainMenuPanel.add(newWorldButton);
-        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
-        mainMenuPanel.add(openSavesButton);
-        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
-        mainMenuPanel.add(quitApplicationButton);
+        menuScreen.add(Box.createRigidArea(buttonDistance));
+        menuScreen.add(newWorldButton);
+        menuScreen.add(Box.createRigidArea(buttonDistance));
+        menuScreen.add(openSavesButton);
+        menuScreen.add(Box.createRigidArea(buttonDistance));
+        menuScreen.add(quitApplicationButton);
     }
 }

@@ -1,7 +1,7 @@
 package baudelaire.userinterface.actions;
 
 import baudelaire.userinterface.MainWindow;
-import baudelaire.userinterface.worldscreen.WorldPanel;
+import baudelaire.userinterface.worldscreen.WorldScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,11 +9,11 @@ import java.beans.PropertyChangeListener;
 
 public class StartWorldAction implements Action {
     private final MainWindow mainWindow;
-    private final WorldPanel worldPanel;
+    private final WorldScreen worldScreen;
 
-    public StartWorldAction(MainWindow mainWindow, WorldPanel worldPanel) {
+    public StartWorldAction(MainWindow mainWindow, WorldScreen worldScreen) {
         this.mainWindow = mainWindow;
-        this.worldPanel = worldPanel;
+        this.worldScreen = worldScreen;
     }
 
     /**
