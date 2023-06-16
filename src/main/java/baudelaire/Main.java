@@ -1,29 +1,29 @@
 package baudelaire;
 
 import baudelaire.userinterface.MainWindow;
+import baudelaire.userinterface.actions.OpenSavesAction;
+import baudelaire.userinterface.actions.QuitApplicationAction;
 import baudelaire.userinterface.actions.StartWorldAction;
-import baudelaire.userinterface.formatting.ColorScheme;
-import baudelaire.userinterface.mainmenuscreen.ApplicationTitleLabel;
-import baudelaire.userinterface.mainmenuscreen.MainMenuButton;
-import baudelaire.userinterface.mainmenuscreen.MainMenuPanel;
+import baudelaire.userinterface.mainmenuscreen.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainWindow mainFrame = new MainWindow();
-        JPanel mainPanel = new MainMenuPanel();
+        MainWindow mainWindow = new MainWindow();
+        MainMenuPanel mainPanel = new MainMenuPanel();
         makeInterfaceCrossPlatform();
 
-        // Create Application Title
         createApplicationTitle(mainPanel);
-//        createMenuButtons(mainFrame, mainPanel);
+        createMenuButtons(mainWindow, mainPanel);
+        showWindow(mainWindow, mainPanel);
+    }
 
-        // Show the frame
-        mainFrame.add(mainPanel);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+    private static void showWindow(MainWindow mainWindow, MainMenuPanel mainPanel) {
+        mainWindow.add(mainPanel);
+        mainWindow.pack();
+        mainWindow.setVisible(true);
     }
 
     private static void makeInterfaceCrossPlatform() {
@@ -39,27 +39,17 @@ public class Main {
         mainPanel.add(new ApplicationTitleLabel());
     }
 
-    //    private static void createMenuButtons(JFrame mainWindow, JPanel mainPanel) {
-//        // Create Actions for Buttons
-////        StartGameAction startGameAction = new StartGameAction(mainWindow, mainPanel);
-//        Action startGameAction = new
-//        // Create MainMenuButtons
-//        Dimension buttonDistance = new Dimension(0, 15);
-//        mainPanel.add( Box.createRigidArea( buttonDistance ));
-//        mainPanel.add( new MainMenuButton("Start", startGameAction) );
-//        mainPanel.add( Box.createRigidArea( buttonDistance ));
-//        mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
-//        mainPanel.add( Box.createRigidArea( buttonDistance ));
-//        mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
-//
-//        // Show the frame and centre the window
-//        mainWindow.add(mainPanel);
-//        mainWindow.pack();
-//        mainWindow.setLocationRelativeTo(null);
-//        mainWindow.setResizable(false);
-//        mainWindow.setVisible(true);
-//    }
-    private static void createMenuButtons(JFrame mainWindow, JPanel mainMenuPanel) {
-        Action startWorldAction = new StartWorldAction(mainWindow, );
+    private static void createMenuButtons(MainWindow mainWindow, JPanel mainMenuPanel) {
+        NewWorldButton newWorldButton = new NewWorldButton(new StartWorldAction(mainWindow, null));
+        OpenSavesButton openSavesButton = new OpenSavesButton(new OpenSavesAction(mainWindow, null));
+        QuitApplicationButton quitApplicationButton = new QuitApplicationButton(new QuitApplicationAction());
+        Dimension buttonDistance = new Dimension(0, 15);
+
+        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
+        mainMenuPanel.add(newWorldButton);
+        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
+        mainMenuPanel.add(openSavesButton);
+        mainMenuPanel.add(Box.createRigidArea(buttonDistance));
+        mainMenuPanel.add(quitApplicationButton);
     }
 }
