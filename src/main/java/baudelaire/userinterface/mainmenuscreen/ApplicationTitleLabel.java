@@ -1,4 +1,4 @@
-package baudelaire.userinterface.mainmenu;
+package baudelaire.userinterface.mainmenuscreen;
 
 import baudelaire.userinterface.formatting.ColorScheme;
 import baudelaire.userinterface.formatting.Fonts;

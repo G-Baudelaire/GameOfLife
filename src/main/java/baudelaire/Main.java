@@ -1,8 +1,11 @@
 package baudelaire;
 
 import baudelaire.userinterface.MainWindow;
+import baudelaire.userinterface.actions.StartWorldAction;
 import baudelaire.userinterface.formatting.ColorScheme;
-import baudelaire.userinterface.mainmenu.ApplicationTitleLabel;
+import baudelaire.userinterface.mainmenuscreen.ApplicationTitleLabel;
+import baudelaire.userinterface.mainmenuscreen.MainMenuButton;
+import baudelaire.userinterface.mainmenuscreen.MainMenuPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +13,11 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         MainWindow mainFrame = new MainWindow();
-        JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(ColorScheme.COLOR_ONE);
+        JPanel mainPanel = new MainMenuPanel();
         makeInterfaceCrossPlatform();
 
-        // Create Carbon Royale Title
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
-        mainPanel.add(new ApplicationTitleLabel());
+        // Create Application Title
+        createApplicationTitle(mainPanel);
 //        createMenuButtons(mainFrame, mainPanel);
 
         // Show the frame
@@ -32,10 +33,16 @@ public class Main {
             e.printStackTrace();
         }
     }
-//    private static void createMenuButtons(JFrame mainWindow, JPanel mainPanel) {
+
+    private static void createApplicationTitle(JPanel mainPanel) {
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+        mainPanel.add(new ApplicationTitleLabel());
+    }
+
+    //    private static void createMenuButtons(JFrame mainWindow, JPanel mainPanel) {
 //        // Create Actions for Buttons
-//        StartGameAction startGameAction = new StartGameAction(mainWindow, mainPanel);
-//
+////        StartGameAction startGameAction = new StartGameAction(mainWindow, mainPanel);
+//        Action startGameAction = new
 //        // Create MainMenuButtons
 //        Dimension buttonDistance = new Dimension(0, 15);
 //        mainPanel.add( Box.createRigidArea( buttonDistance ));
@@ -52,4 +59,7 @@ public class Main {
 //        mainWindow.setResizable(false);
 //        mainWindow.setVisible(true);
 //    }
+    private static void createMenuButtons(JFrame mainWindow, JPanel mainMenuPanel) {
+        Action startWorldAction = new StartWorldAction(mainWindow, );
+    }
 }
