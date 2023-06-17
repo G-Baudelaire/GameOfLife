@@ -1,7 +1,8 @@
 package baudelaire.userinterface.worldscreen;
 
+import baudelaire.userinterface.formatting.ColorScheme;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class GridButton extends JButton {
     private final int row, column;
@@ -27,10 +28,9 @@ public class GridButton extends JButton {
         return column;
     }
 
-    public boolean toggleAliveState() {
+    public void toggleAliveState() {
         alive = !alive;
         setStyle();
-        return alive;
     }
 
     private void setStyle() {
@@ -42,10 +42,10 @@ public class GridButton extends JButton {
     }
 
     private void setAliveStyle() {
-        setBackground(Color.WHITE);
+        setBackground(ColorScheme.ALIVE_CELL);
     }
 
     private void setDeadStyle() {
-        setBackground(Color.BLACK);
+        setBackground(ColorScheme.DEAD_CELL);
     }
 }

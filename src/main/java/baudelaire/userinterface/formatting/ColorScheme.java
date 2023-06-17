@@ -8,4 +8,7 @@ public class ColorScheme {
     public final static Color COLOR_THREE = new Color(98, 171, 172);
     public final static Color COLOR_FOUR = new Color(243, 243, 246);
     public final static Color COLOR_FIVE = new Color(49, 54, 56);
+    public final static Color ALIVE_CELL = Color.BLACK;
+    public final static Color DEAD_CELL = Color.WHITE;
+
 }
