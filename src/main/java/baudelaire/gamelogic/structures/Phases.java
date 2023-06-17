@@ -1,4 +1,4 @@
-package baudelaire.gamelogic;
+package baudelaire.gamelogic.structures;
 
 public class Phases {
     public final static boolean[][] BLOCK = {

@@ -40,15 +40,26 @@ public class Main {
     }
 
     private static void createMenuButtons(MainWindow mainWindow, MainMenuScreen menuScreen) {
-        NewWorldButton newWorldButton = new NewWorldButton(new StartWorldAction(mainWindow, null));
-        OpenSavesButton openSavesButton = new OpenSavesButton(new OpenSavesAction(mainWindow, null));
-        QuitApplicationButton quitApplicationButton = new QuitApplicationButton(new QuitApplicationAction());
         Dimension buttonDistance = new Dimension(0, 15);
+        addNewWorldButton(mainWindow, menuScreen, buttonDistance);
+        addOpenSavesButton(mainWindow, menuScreen, buttonDistance);
+        addQuitButton(menuScreen, buttonDistance);
+    }
 
+    private static void addNewWorldButton(MainWindow mainWindow, MainMenuScreen menuScreen, Dimension buttonDistance) {
+        NewWorldButton newWorldButton = new NewWorldButton(new StartWorldAction(mainWindow, menuScreen));
         menuScreen.add(Box.createRigidArea(buttonDistance));
         menuScreen.add(newWorldButton);
+    }
+
+    private static void addOpenSavesButton(MainWindow mainWindow, MainMenuScreen menuScreen, Dimension buttonDistance) {
+        OpenSavesButton openSavesButton = new OpenSavesButton(new OpenSavesAction(mainWindow, menuScreen));
         menuScreen.add(Box.createRigidArea(buttonDistance));
         menuScreen.add(openSavesButton);
+    }
+
+    private static void addQuitButton(MainMenuScreen menuScreen, Dimension buttonDistance) {
+        QuitApplicationButton quitApplicationButton = new QuitApplicationButton(new QuitApplicationAction());
         menuScreen.add(Box.createRigidArea(buttonDistance));
         menuScreen.add(quitApplicationButton);
     }

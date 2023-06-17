@@ -4,11 +4,20 @@ public class World {
     protected final int columns, rows;
     protected boolean[][] world;
 
-    public World(int columns, int rows) {
-        if (columns < 1 || rows < 1) throw new IllegalArgumentException();
+    public World(int rows, int columns) {
+        if (rows < 1) throw new IllegalArgumentException("Must have at least 1 row.");
+        if (columns < 1) throw new IllegalArgumentException("Must have at least 1 column.");
         this.columns = columns;
         this.rows = rows;
         world = new boolean[rows][columns];
+    }
+
+    public World(boolean[][] world) {
+        if (world.length < 1) throw new IllegalArgumentException("2D Boolean array must have at least 1 row.");
+        if (world[0].length < 1) throw new IllegalArgumentException("2D Boolean array must have at least 1 column.");
+        this.world = world.clone();
+        this.rows = world.length;
+        this.columns = world[0].length;
     }
 
     /**
@@ -58,14 +67,6 @@ public class World {
         return world.clone();
     }
 
-    public boolean getCell(int column, int row) {
-        return world[row][column];
-    }
-
-    public void setCell(boolean alive, int column, int row) {
-        world[row][column] = alive;
-    }
-
     /**
      * Replace current 2D array of the world with a new 2D array.
      *
@@ -79,6 +80,14 @@ public class World {
                 throw new IllegalArgumentException("Incorrect number of columns.");
             }
         } else throw new IllegalArgumentException("Incorrect number of rows.");
+    }
+
+    public boolean getCell(int column, int row) {
+        return world[row][column];
+    }
+
+    public void setCell(boolean alive, int column, int row) {
+        world[row][column] = alive;
     }
 
     /**

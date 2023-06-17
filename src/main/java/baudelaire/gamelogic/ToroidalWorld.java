@@ -5,7 +5,7 @@ import static java.lang.Math.floorMod;
 public class ToroidalWorld extends World {
 
     public ToroidalWorld(int columns, int rows) {
-        super(columns, rows);
+        super(rows, columns);
     }
 
     @Override

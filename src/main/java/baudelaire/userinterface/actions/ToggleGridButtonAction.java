@@ -1,20 +1,19 @@
 package baudelaire.userinterface.actions;
 
-import baudelaire.userinterface.MainWindow;
-import baudelaire.userinterface.mainmenuscreen.MainMenuScreen;
-import baudelaire.userinterface.worldscreen.WorldScreen;
+import baudelaire.gamelogic.World;
+import baudelaire.userinterface.worldscreen.GridButton;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
-public class StartWorldAction implements Action {
-    private final MainWindow mainWindow;
-    private final MainMenuScreen menuScreen;
+public class ToggleGridButtonAction implements Action {
+    private static World world = null;
+    private final GridButton gridButton;
 
-    public StartWorldAction(MainWindow mainWindow, MainMenuScreen menuScreen) {
-        this.mainWindow = mainWindow;
-        this.menuScreen = menuScreen;
+
+    public ToggleGridButtonAction(GridButton gridButton) {
+        this.gridButton = gridButton;
     }
 
     /**
@@ -25,6 +24,7 @@ public class StartWorldAction implements Action {
      * @return the {@code Object} value
      * @see #putValue
      */
+    @Override
     public Object getValue(String key) {
         return null;
     }
@@ -38,7 +38,9 @@ public class StartWorldAction implements Action {
      * @param key   a <code>String</code> containing the key
      * @param value an <code>Object</code> value
      */
+    @Override
     public void putValue(String key, Object value) {
+
     }
 
     /**
@@ -49,6 +51,7 @@ public class StartWorldAction implements Action {
      * @return true if this {@code Action} is enabled
      * @see #accept
      */
+    @Override
     public boolean isEnabled() {
         return true;
     }
@@ -63,7 +66,9 @@ public class StartWorldAction implements Action {
      * @param b true to enable this {@code Action}, false to disable it
      * @see #accept
      */
+    @Override
     public void setEnabled(boolean b) {
+
     }
 
     /**
@@ -74,7 +79,9 @@ public class StartWorldAction implements Action {
      *
      * @param listener a <code>PropertyChangeListener</code> object
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
+
     }
 
     /**
@@ -83,7 +90,9 @@ public class StartWorldAction implements Action {
      * @param listener a <code>PropertyChangeListener</code> object
      * @see #addPropertyChangeListener
      */
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
+
     }
 
     /**
@@ -91,11 +100,15 @@ public class StartWorldAction implements Action {
      *
      * @param e the event to be processed
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
-        WorldScreen worldScreen = new WorldScreen();
-        mainWindow.remove(menuScreen);
-        mainWindow.add(worldScreen);
-        mainWindow.invalidate();
-        mainWindow.validate();
+        gridButton.toggleAliveState();
+        world.setCell(gridButton.isAlive(), gridButton.getColumn(), gridButton.getRow());
+        gridButton.invalidate();
+        gridButton.validate();
+    }
+
+    public static void setWorld(World world) {
+        ToggleGridButtonAction.world = world;
     }
 }

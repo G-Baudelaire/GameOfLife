@@ -1,6 +1,7 @@
 package baudelaire.userinterface.actions;
 
 import baudelaire.userinterface.MainWindow;
+import baudelaire.userinterface.mainmenuscreen.MainMenuScreen;
 import baudelaire.userinterface.savesscreen.SavesScreen;
 
 import javax.swing.*;
@@ -9,11 +10,11 @@ import java.beans.PropertyChangeListener;
 
 public class OpenSavesAction implements Action {
     private final MainWindow mainWindow;
-    private final SavesScreen savesPanel;
+    private final MainMenuScreen menuScreen;
 
-    public OpenSavesAction(MainWindow mainWindow, SavesScreen savesPanel) {
+    public OpenSavesAction(MainWindow mainWindow, MainMenuScreen menuScreen) {
         this.mainWindow = mainWindow;
-        this.savesPanel = savesPanel;
+        this.menuScreen = menuScreen;
     }
 
     /**
@@ -24,7 +25,6 @@ public class OpenSavesAction implements Action {
      * @return the {@code Object} value
      * @see #putValue
      */
-    @Override
     public Object getValue(String key) {
         return null;
     }
@@ -38,7 +38,6 @@ public class OpenSavesAction implements Action {
      * @param key   a <code>String</code> containing the key
      * @param value an <code>Object</code> value
      */
-    @Override
     public void putValue(String key, Object value) {
     }
 
@@ -50,7 +49,6 @@ public class OpenSavesAction implements Action {
      * @return true if this {@code Action} is enabled
      * @see #accept
      */
-    @Override
     public boolean isEnabled() {
         return true;
     }
@@ -65,7 +63,6 @@ public class OpenSavesAction implements Action {
      * @param b true to enable this {@code Action}, false to disable it
      * @see #accept
      */
-    @Override
     public void setEnabled(boolean b) {
     }
 
@@ -77,7 +74,6 @@ public class OpenSavesAction implements Action {
      *
      * @param listener a <code>PropertyChangeListener</code> object
      */
-    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
     }
 
@@ -87,7 +83,6 @@ public class OpenSavesAction implements Action {
      * @param listener a <code>PropertyChangeListener</code> object
      * @see #addPropertyChangeListener
      */
-    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
     }
 
@@ -96,9 +91,10 @@ public class OpenSavesAction implements Action {
      *
      * @param e the event to be processed
      */
-    @Override
     public void actionPerformed(ActionEvent e) {
-//      TODO: Change this placeholder implementation.
-        System.exit(2);
+        SavesScreen savesScreen = new SavesScreen();
+        mainWindow.remove(menuScreen);
+        mainWindow.add(savesScreen);
+        mainWindow.validate();
     }
 }

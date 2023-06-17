@@ -1,6 +1,7 @@
 package baudelaire.gamelogic;
 
 
+import baudelaire.gamelogic.structures.Phases;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class WorldTest {
 
     @Test
     public void testBeeHiveStable() {
-        World world = new World(4, 3);
+        World world = new World(3, 4);
         world.setWorld(Phases.BEE_HIVE);
         world.tickWorld();
         assertTrue(equals(Phases.BEE_HIVE, world.getWorld()));
@@ -62,23 +63,23 @@ public class WorldTest {
     @Test
     public void testInstantiateWorldBorderlineValidColumn() {
         assertDoesNotThrow(() -> {
-            new World(1, 10);
+            new World(10, 1);
         });
     }
 
     @Test
     public void testInstantiateWorldBorderlineValidRow() {
-        assertDoesNotThrow(() -> new World(10, 1));
+        assertDoesNotThrow(() -> new World(1, 10));
     }
 
     @Test
     public void testInstantiateWorldBorderlineInvalidColumn() {
-        assertThrows(IllegalArgumentException.class, () -> new World(0, 10));
+        assertThrows(IllegalArgumentException.class, () -> new World(10, 0));
     }
 
     @Test
     public void testInstantiateWorldBorderlineInvalidRow() {
-        assertThrows(IllegalArgumentException.class, () -> new World(10, 0));
+        assertThrows(IllegalArgumentException.class, () -> new World(0, 10));
     }
 
     @Test
