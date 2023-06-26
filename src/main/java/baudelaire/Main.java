@@ -14,7 +14,6 @@ public class Main {
         MainWindow mainWindow = new MainWindow();
         MainMenuScreen menuScreen = new MainMenuScreen();
         makeInterfaceCrossPlatform();
-
         createApplicationTitle(menuScreen);
         createMenuButtons(mainWindow, menuScreen);
         showWindow(mainWindow, menuScreen);

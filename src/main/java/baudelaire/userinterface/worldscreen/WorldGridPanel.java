@@ -19,6 +19,9 @@ public class WorldGridPanel extends JPanel {
     private void setup() {
         GridLayout layout = new GridLayout(world.getRows(), world.getColumns());
         setLayout(layout);
+        setPreferredSize(Sizing.WORLD_GRID_SIZE);
+        setMinimumSize(Sizing.WORLD_GRID_SIZE);
+        setSize(Sizing.WORLD_GRID_SIZE);
         setMaximumSize(Sizing.WORLD_GRID_SIZE);
     }
 
